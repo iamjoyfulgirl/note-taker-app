@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs')
 
 // npm package that will create a unique id for each note
-var uniqid = require('uniqid');
+const uniqid = require('uniqid');
 
 
 // routing
