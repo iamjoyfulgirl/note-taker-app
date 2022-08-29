@@ -8,7 +8,7 @@ const fs = require('fs');
 module.exports = (app) => {
 
     // creating routes
-    // GET / takes user to homepage
+    // GET / takes user to index.html aka homepage
     app.get('/', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
@@ -18,7 +18,7 @@ module.exports = (app) => {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
 
-    // GET * should return the index.html file.
+    // GET * should return the index.html aka homepage 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/index.html'));
     })
