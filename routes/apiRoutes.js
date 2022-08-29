@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs')
 
-// npm package that creates unique ids
+// npm package that will create a unique id for each note
 var uniqid = require('uniqid');
 
 
@@ -19,6 +19,7 @@ module.exports = (app) => {
     let db = fs.readFileSync('db/db.json');
     db = JSON.parse(db);
     res.json(db);
+
     // creating body for note
     let userNote = {
       title: req.body.title,
@@ -26,18 +27,19 @@ module.exports = (app) => {
       // creating unique id for each note
       id: uniqid(),
     };
+
     // pushing created note to be written in the db.json file
     db.push(userNote);
     fs.writeFileSync('db/db.json', JSON.stringify(db));
-    res.json(db);
 
   });
+
 
   // DELETE /api/notes/:id should receive a query parameter containing the id of a note to delete.
   app.delete('/api/notes/:id', (req, res) => {
     // reading notes form db.json
     let db = JSON.parse(fs.readFileSync('db/db.json'))
-    // Delete note with specified id
+    // removing note with id
     let deleteNotes = db.filter(item => item.id !== req.params.id);
     // Rewriting note to db.json
     fs.writeFileSync('db/db.json', JSON.stringify(deleteNotes));
@@ -45,3 +47,7 @@ module.exports = (app) => {
 
   })
 };
+
+
+
+
